@@ -68,9 +68,8 @@ This project is a basic demo, and future iterations may include:
 
 Follow my social media to watch gameplay videos and receive updates on this and other projects:
 
-- [Instagram](#) (Add your Instagram link)
-- [Twitter/X](#) (Add your Twitter link)
-- [YouTube](#) (Add your YouTube link)
+- [Instagram](#) (https://www.instagram.com/peppeproduction/?hl=en)
+- [YouTube](#) (https://www.youtube.com/@PeppeProductionHQ/videos)
 
 ## License
 
