@@ -8,9 +8,10 @@ public class Player : MonoBehaviour  // Define the Player class, which inherits 
     // Public variables that can be set in the Unity Inspector
     public Rigidbody rb;  // Reference to the Rigidbody component, needed to apply physics forces like velocity and rotation to the player
     [Header ("Gun data")]
-
     [SerializeField] private Transform gunPoint;
     [SerializeField] private float bulletSpeed;
+
+    [SerializeField] private GameObject bulletPrefab;
 
     [Header("Movement data")]   // A Unity attribute that creates a header label in the Unity Inspector for better organization of public variables
     public float moveSpeed;     // Speed multiplier for the player's movement; this can be adjusted in the Inspector
@@ -58,12 +59,15 @@ public class Player : MonoBehaviour  // Define the Player class, which inherits 
     // FixedUpdate is called at consistent, fixed intervals and is recommended for physics updates
     private void FixedUpdate()
     {
+
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+            Shoot();
         // Create a movement vector based on the forward direction of the player, the input from the player, and moveSpeed
         Vector3 movement = transform.forward * moveSpeed * verticalInput;  // Move forward based on player's input and speed
 
         // Apply the movement vector to the player's Rigidbody, changing the player's velocity
         // This causes the player to physically move in the game world
-        rb.velocity = movement;
+        rb.velocity =    movement;
 
         // Rotate the player around the Y-axis (up/down axis) based on the horizontal input (e.g., turning left or right)
         transform.Rotate(0, horizontalInput * rotationSpeed, 0);  // Rotate the player to turn left/right
@@ -80,7 +84,9 @@ public class Player : MonoBehaviour  // Define the Player class, which inherits 
 
     private void Shoot() 
     {
-    Debug.Log("Phew phew");
+        GameObject bullet = Instantiate (bulletPrefab, gunPoint.position, gunPoint.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = gunPoint.forward * bulletSpeed;
+        Destroy (bullet,7);
     }
 
     // Method responsible for handling the player's aiming functionality
